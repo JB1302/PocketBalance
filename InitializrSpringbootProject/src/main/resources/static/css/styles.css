@@ -1,0 +1,21 @@
+/* en src/main/resources/static/css/styles.css */
+html, body {
+    margin: 0;
+    padding: 0;
+}
+
+
+.navbar-modern {
+    background-color: #445443;
+    border-bottom-left-radius: 0.5rem;
+    border-bottom-right-radius: 0.5rem;
+    box-shadow: 0 4px 8px rgba(0,0,0,0.15);
+}
+
+
+
+
+.footer-modern{
+    background-color: #445443;
+
+}
