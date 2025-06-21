@@ -7,7 +7,12 @@
         <nav th:replace="~{layout/plantilla :: nav}"/>
 
         <main class="flex-grow-1">
-            <div class="container mt-4">
+            <div th:replace="~{finances/fragmentos :: salario}"/>
+            <div th:replace="~{finances/fragmentos :: cardTotales}"/>
+            <div th:replace="~{finances/fragmentos :: cardSobrantes}"/>
+
+            <div class="container d-flex justify-content-center">
+
                 <section th:replace="~{finances/fragmentos :: tabla}"/>
 
             </div>

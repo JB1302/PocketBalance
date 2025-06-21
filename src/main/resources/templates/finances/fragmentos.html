@@ -1,5 +1,6 @@
 <!-- Fragmento de tabla -->
 <div th:fragment="tabla">
+    <h1 class="fw-bold">Finanzas</h1>
     <table class="tabla-pb table-borderless">
         <thead>
             <tr>
@@ -17,7 +18,7 @@
                 <td th:text="${cuenta.id_transaccion}"></td>
                 <td th:text="${cuenta.periodo}"></td>
                 <td th:text="${cuenta.nombre}"></td>
-                <td th:text="${cuenta.monto}"></td>
+                <td th:text="'₡ '+${cuenta.monto}"></td>
                 <td th:text="${cuenta.cantidad}"></td>
                 <td th:text="${#dates.format(cuenta.ultima_actualizacion, 'dd/MM/yyyy HH:mm')}"></td>
                 <td>
@@ -97,4 +98,37 @@
             </tr>
         </tbody>
     </table>
+</div>
+
+<div th:fragment="salario">
+    <!-- Tarjeta -->
+    <div class="card shadow-sm bg-white rounded text-center mx-auto" style="width: 21rem;">
+        <div class="card-body py-2 px-3 d-flex flex-column justify-content-center">
+            <h6 class="card-title mb-1 fw-bold text-start">Salario</h6>
+            <p class="card-text fw-bold text-success display-4">₡1,523,800</p>
+        </div>
+    </div>
+
+    <!-- Botón fuera de la tarjeta, pero alineado -->
+    <div class="text-center mt-3" style="width: 21rem; margin-left: auto; margin-right: auto;">
+        <button type="submit" class="btn btn-success p-2 w-100">
+            <i class="fa-solid fa-piggy-bank"></i> Guardar Cambios
+        </button>
+    </div>
+</div>
+
+
+
+<div th:fragment="cardTotales" class="card shadow-sm bg-white rounded text-center mx-auto" style="width: 21rem; height: auto;">
+    <div class="card-body py-2 px-3 d-flex flex-column justify-content-center">
+        <h6 class="card-title mb-1 fw-bold text-start">Gastos Totales</h6>
+        <p class="card-text fw-bold text-success display-4">₡523,800</p>
+    </div>
+</div>
+
+<div th:fragment="cardSobrantes" class="card shadow-sm bg-white rounded text-center mx-auto" style="width: 21rem; height: auto;">
+    <div class="card-body py-2 px-3 d-flex flex-column justify-content-center">
+        <h6 class="card-title mb-1 fw-bold text-start">Sobrantes</h6>
+        <p class="card-text fw-bold text-success display-4">₡953,800</p>
+    </div>
 </div>

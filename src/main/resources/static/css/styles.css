@@ -9,7 +9,16 @@ html, body {
     border-bottom-left-radius: 0.5rem;
     border-bottom-right-radius: 0.5rem;
     box-shadow: 0 4px 8px rgba(0,0,0,0.15);
+
+    /* Reduce el alto */
+    padding-bottom: 0.25rem !important;
 }
+
+nav.navbar {
+    margin-top: 0 !important;
+    padding-top: 0 !important;
+}
+
 
 .footer-modern{
     background-color: #445443;
@@ -34,9 +43,9 @@ html, body {
 }
 
 .tabla-pb tbody tr {
-  background-color: #fff;
-  box-shadow: 0 2px 6px rgba(0, 0, 0, 0.05);
-  border-radius: 8px;
+    background-color: #fff;
+    box-shadow: 0 2px 6px rgba(0, 0, 0, 0.05);
+    border-radius: 8px;
 }
 
 

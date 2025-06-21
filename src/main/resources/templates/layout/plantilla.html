@@ -18,96 +18,101 @@
 
     </head>
     <body>
+
         <nav th:fragment="nav" class="navbar navbar-expand-md bg-white">
-            <div class="container d-flex align-items-center">
+            <div class="container">
+                <div class="row w-100 align-items-center">
 
-                <!-- 1) Logo + Pocket Balance a la izquierda -->
-                <a class="navbar-brand d-flex align-items-center pe-3 text-decoration-none text-dark" href="#">
-                    <img th:src="@{/img/Foto.png}"
-                         alt="Logo"
-                         width="42" height="42"
-                         class="rounded-circle me-2"/>
-                    <div class="d-flex flex-column fw-bold">
-                        <span>Pocket</span>
-                        <span>Balance</span>
-                    </div>
-                </a>
-
-                <!-- 2) Bloque central coloreado con menús + botón, perfectamente centrado -->
-                <div class="navbar-modern d-flex align-items-center mx-auto px-4 py-2 rounded-bottom">
-                    <ul class="nav me-3 mb-0">
-                        <li class="nav-item">
-                            <a class="nav-link text-white px-3" th:href="@{/dashboard}">Dashboard</a>
-                        </li>
-                        <li class="nav-item">
-                            <a class="nav-link text-white px-3" th:href="@{/transacciones}">Transacciones</a>
-                        </li>
-                        <li class="nav-item">
-                            <a class="nav-link text-white px-3" th:href="@{/reportes}">Reportes</a>
-                        </li>
-                        <li class="nav-item">
-                            <a class="nav-link text-white px-3" th:href="@{/ajustes}">Ajustes</a>
-                        </li>
-                    </ul>
-                    <button class="btn btn-success"
-                            data-bs-toggle="modal"
-                            data-bs-target="#modalAgregarCuenta">
-                        <i class="fa-solid fa-plus"></i> Agregar (+)
-                    </button>
-                    <!-- Modal Agregar Cuenta -->
-                    <div class="modal fade" id="modalAgregarCuenta" tabindex="-1" aria-labelledby="modalAgregarCuentaLabel" aria-hidden="true">
-                        <div class="modal-dialog modal-lg">
-                            <div class="modal-content">
-                                <div class="modal-header bg-success text-white">
-                                    <h1 class="modal-title fs-5" id="modalAgregarCuentaLabel">
-                                        <i class="fa-solid fa-wallet"></i> Agregar Transacción
-                                    </h1>
-                                    <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Cerrar"></button>
-                                </div>
-
-                                <!-- Formulario para enviar nueva transacción -->
-                                <form th:action="@{/guardar}" method="post" th:object="${PocketBalance}" class="was-validated">
-                                    <div class="modal-body">
-                                        <div class="row g-3">
-                                            <div class="col-md-6">
-                                                <label>Periodo</label>
-                                                <input type="number" th:field="*{periodo}" class="form-control" required />
-                                            </div>
-                                            <div class="col-md-6">
-                                                <label>Nombre</label>
-                                                <input type="text" th:field="*{nombre}" class="form-control" required />
-                                            </div>
-                                            <div class="col-md-6">
-                                                <label>Monto</label>
-                                                <input type="number" th:field="*{monto}" class="form-control" required />
-                                            </div>
-                                            <div class="col-md-6">
-                                                <label>Cantidad</label>
-                                                <input type="number" th:field="*{cantidad}" class="form-control" required />
-                                            </div>
-                                        </div>
-                                    </div>
-
-                                    <div class="modal-footer">
-                                        <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">
-                                            <i class="fa-solid fa-xmark"></i> Cerrar
-                                        </button>
-                                        <button type="submit" class="btn btn-success">
-                                            <i class="fa-solid fa-floppy-disk"></i> Guardar
-                                        </button>
-                                    </div>
-                                </form>
-
+                    <!-- LOGO -->
+                    <div class="col-12 col-md-3 d-flex align-items-center justify-content-center justify-content-md-start mb-2 mb-md-0">
+                        <a class="navbar-brand d-flex align-items-center text-decoration-none text-dark" href="#">
+                            <img th:src="@{/img/Foto.png}" alt="Logo"
+                                 width="42" height="42"
+                                 class="rounded-circle me-2"/>
+                            <div class="d-flex flex-column fw-bold">
+                                <span>Pocket</span>
+                                <span>Balance</span>
                             </div>
+                        </a>
+                    </div>
+
+                    <!-- MENÚ CENTRADO -->
+                    <div class="col-12 col-md-6 d-flex justify-content-center">
+                        <div class="navbar-modern d-flex align-items-center px-3 py-1 rounded-bottom" style="background-color: #3e4f3e;">
+                            <ul class="nav mb-0">
+                                <li class="nav-item">
+                                    <a class="nav-link text-white px-3" th:href="@{/dashboard}">Dashboard</a>
+                                </li>
+                                <li class="nav-item">
+                                    <a class="nav-link text-white px-3" th:href="@{/transacciones}">Transacciones</a>
+                                </li>
+                                <li class="nav-item">
+                                    <a class="nav-link text-white px-3" th:href="@{/reportes}">Reportes</a>
+                                </li>
+                                <li class="nav-item">
+                                    <a class="nav-link text-white px-3" th:href="@{/ajustes}">Ajustes</a>
+                                </li>
+                            </ul>
                         </div>
                     </div>
 
-                </div>
+                    <!-- BOTÓN AGREGAR -->
+                    <div class="col-12 col-md-3 d-flex justify-content-center justify-content-md-end mt-2 mt-md-0">
+                        <button class="btn btn-success" data-bs-toggle="modal" data-bs-target="#modalAgregarCuenta">
+                            <i class="fa-solid fa-plus"></i> Agregar
+                        </button>
+                    </div>
 
+                </div>
+            </div>
+
+            <!-- MODAL Agregar Transacción -->
+            <div class="modal fade" id="modalAgregarCuenta" tabindex="-1" aria-labelledby="modalAgregarCuentaLabel" aria-hidden="true">
+                <div class="modal-dialog modal-lg">
+                    <div class="modal-content">
+                        <div class="modal-header bg-success text-white">
+                            <h1 class="modal-title fs-5" id="modalAgregarCuentaLabel">
+                                <i class="fa-solid fa-wallet"></i> Agregar Transacción
+                            </h1>
+                            <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Cerrar"></button>
+                        </div>
+
+                        <!-- Formulario para enviar nueva transacción -->
+                        <form th:action="@{/guardar}" method="post" th:object="${PocketBalance}" class="was-validated">
+                            <div class="modal-body">
+                                <div class="row g-3">
+                                    <div class="col-md-6">
+                                        <label>Periodo</label>
+                                        <input type="number" th:field="*{periodo}" class="form-control" required />
+                                    </div>
+                                    <div class="col-md-6">
+                                        <label>Nombre</label>
+                                        <input type="text" th:field="*{nombre}" class="form-control" required />
+                                    </div>
+                                    <div class="col-md-6">
+                                        <label>Monto</label>
+                                        <input type="number" th:field="*{monto}" class="form-control" required />
+                                    </div>
+                                    <div class="col-md-6">
+                                        <label>Cantidad</label>
+                                        <input type="number" th:field="*{cantidad}" class="form-control" required />
+                                    </div>
+                                </div>
+                            </div>
+
+                            <div class="modal-footer">
+                                <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">
+                                    <i class="fa-solid fa-xmark"></i> Cerrar
+                                </button>
+                                <button type="submit" class="btn btn-success">
+                                    <i class="fa-solid fa-floppy-disk"></i> Guardar
+                                </button>
+                            </div>
+                        </form>
+                    </div>
+                </div>
             </div>
         </nav>
-
-
 
 
         <section th:fragment="testing">
