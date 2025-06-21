@@ -101,46 +101,52 @@
 </div>
 
 <div th:fragment="salario">
-    <!-- Tarjeta -->
+    <!-- Tarjeta de salario -->
     <div class="card shadow-sm bg-white rounded text-center mx-auto" style="width: 21rem;">
         <div class="card-body py-2 px-3 d-flex flex-column justify-content-center">
             <h6 class="card-title mb-1 fw-bold text-start">Salario</h6>
-            <p id="totalSalario" class="card-text fw-bold text-success display-4">₡0</p>
+            <p id="totalSalario" 
+               class="card-text fw-bold text-success display-4"
+               th:attr="data-salario=${salario}">
+                ₡<span th:text="${#numbers.formatInteger(salario, 3, 'POINT')}">0</span>
+            </p>
+
         </div>
     </div>
 
-    <!-- Botón que abre el modal -->
-    <div class="text-center mt-3" style="width: 21rem; margin-left: auto; margin-right: auto;">
+    <!-- Botón para editar salario -->
+    <div class="text-center mt-3" style="width: 21rem; margin: auto;">
         <button type="button" class="btn btn-success p-2 w-100"
                 data-bs-toggle="modal" data-bs-target="#modalSalario">
-            <i class="fa-solid fa-piggy-bank"></i> Guardar Cambios
+            <i class="fa-solid fa-pen-to-square"></i> Editar Salario
         </button>
     </div>
 
-    <!-- Modal para editar salario -->
+    <!-- Modal de edición -->
     <div class="modal fade" id="modalSalario" tabindex="-1" aria-labelledby="modalSalarioLabel" aria-hidden="true">
         <div class="modal-dialog">
             <div class="modal-content">
-                <div class="modal-header bg-success text-white">
-                    <h5 class="modal-title" id="modalSalarioLabel">
-                        <i class="fa-solid fa-piggy-bank"></i> Editar Salario
-                    </h5>
-                    <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Cerrar"></button>
-                </div>
-                <div class="modal-body">
-                    <label for="inputSalario">Nuevo Salario</label>
-                    <input type="text" id="inputSalario" class="form-control" />
-
-                </div>
-                <div class="modal-footer">
-                    <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Cancelar</button>
-                    <button type="button" class="btn btn-success" onclick="actualizarSalario()">Guardar</button>
-                </div>
+                <form th:action="@{/actualizarSalario}" method="post" th:object="${salarioObjeto}">
+                    <div class="modal-header bg-success text-white">
+                        <h5 class="modal-title" id="modalSalarioLabel">
+                            <i class="fa-solid fa-piggy-bank"></i> Editar Salario
+                        </h5>
+                        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Cerrar"></button>
+                    </div>
+                    <div class="modal-body">
+                        <input type="hidden" th:field="*{id_transaccion}" />
+                        <label for="salarioInput">Nuevo Salario</label>
+                        <input type="number" id="salarioInput" th:field="*{salario_Actual}" class="form-control" required min="0"/>
+                    </div>
+                    <div class="modal-footer">
+                        <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Cancelar</button>
+                        <button type="submit" class="btn btn-success">Guardar</button>
+                    </div>
+                </form>
             </div>
         </div>
     </div>
 </div>
-
 
 
 
