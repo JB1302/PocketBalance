@@ -1,0 +1,100 @@
+<!-- Fragmento de tabla -->
+<div th:fragment="tabla">
+    <table class="table table-striped table-hover table-bordered align-middle text-center shadow-sm rounded bg-white">
+        <thead class="bg-primary text-white">
+            <tr>
+                <th>ID</th>
+                <th>Periodo</th>
+                <th>Nombre</th>
+                <th>Monto</th>
+                <th>Cantidad</th>
+                <th>Última Actualización</th>
+                <th>Acciones</th>
+            </tr>
+        </thead>
+        <tbody>
+            <tr th:each="cuenta : ${PocketBalances}">
+                <td th:text="${cuenta.id_transaccion}"></td>
+                <td th:text="${cuenta.periodo}"></td>
+                <td th:text="${cuenta.nombre}"></td>
+                <td th:text="${cuenta.monto}"></td>
+                <td th:text="${cuenta.cantidad}"></td>
+                <td th:text="${#dates.format(cuenta.ultima_actualizacion, 'dd/MM/yyyy HH:mm')}"></td>
+                <td>
+                    <!-- Botón Editar -->
+                    <button type="button"
+                            class="btn btn-warning btn-sm me-1"
+                            data-bs-toggle="modal"
+                            th:data-bs-target="'#modalEditar' + ${cuenta.id_transaccion}">
+                        <i class="fa-solid fa-edit"></i>
+                    </button>
+
+                    <!-- Formulario Eliminar -->
+                    <form th:action="@{/eliminar}" method="post" class="d-inline">
+                        <input type="hidden" name="id_transaccion" th:value="${cuenta.id_transaccion}" />
+                        <button type="submit" class="btn btn-danger btn-sm">
+                            <i class="fa-solid fa-trash"></i>
+                        </button>
+                    </form>
+
+                    <!-- Modal de Edición -->
+                    <div class="modal fade"
+                         th:id="'modalEditar' + ${cuenta.id_transaccion}"
+                         tabindex="-1"
+                         aria-labelledby="modalEditarLabel"
+                         aria-hidden="true">
+                        <div class="modal-dialog modal-lg">
+                            <div class="modal-content">
+                                <div class="modal-header bg-warning text-dark">
+                                    <h5 class="modal-title" id="modalEditarLabel">
+                                        <i class="fa-solid fa-edit"></i> Editar Transacción
+                                    </h5>
+                                    <button type="button"
+                                            class="btn-close"
+                                            data-bs-dismiss="modal"
+                                            aria-label="Cerrar"></button>
+                                </div>
+
+                                <form th:action="@{/actualizar}" method="post">
+                                    <div class="modal-body">
+                                        <input type="hidden" name="id_transaccion" th:value="${cuenta.id_transaccion}"/>
+
+                                        <div class="row g-3">
+                                            <div class="col-md-6">
+                                                <label>Periodo</label>
+                                                <input type="number" name="periodo" class="form-control" th:value="${cuenta.periodo}" required />
+                                            </div>
+                                            <div class="col-md-6">
+                                                <label>Nombre</label>
+                                                <input type="text" name="nombre" class="form-control" th:value="${cuenta.nombre}" required />
+                                            </div>
+                                            <div class="col-md-6">
+                                                <label>Monto</label>
+                                                <input type="number" name="monto" class="form-control" th:value="${cuenta.monto}" required />
+                                            </div>
+                                            <div class="col-md-6">
+                                                <label>Cantidad</label>
+                                                <input type="number" name="cantidad" class="form-control" th:value="${cuenta.cantidad}" required />
+                                            </div>
+                                        </div>
+                                    </div>
+
+                                    <div class="modal-footer">
+                                        <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">
+                                            <i class="fa-solid fa-xmark"></i> Cancelar
+                                        </button>
+                                        <button type="submit" class="btn btn-warning">
+                                            <i class="fa-solid fa-save"></i> Guardar Cambios
+                                        </button>
+                                    </div>
+                                </form>
+
+                            </div>
+                        </div>
+                    </div>
+                    <!-- Fin Modal -->
+                </td>
+            </tr>
+        </tbody>
+    </table>
+</div>

@@ -17,7 +17,7 @@
         <script th:src="@{/webjars/bootstrap/js/bootstrap.min.js}"></script>
 
     </head>
-<body>
+    <body>
         <nav th:fragment="nav" class="navbar navbar-expand-md bg-white">
             <div class="container d-flex align-items-center">
 
@@ -49,7 +49,59 @@
                             <a class="nav-link text-white px-3" th:href="@{/ajustes}">Ajustes</a>
                         </li>
                     </ul>
-                    <button class="btn btn-success">Agregar (+)</button>
+                    <button class="btn btn-success"
+                            data-bs-toggle="modal"
+                            data-bs-target="#modalAgregarCuenta">
+                        <i class="fa-solid fa-plus"></i> Agregar (+)
+                    </button>
+                    <!-- Modal Agregar Cuenta -->
+                    <div class="modal fade" id="modalAgregarCuenta" tabindex="-1" aria-labelledby="modalAgregarCuentaLabel" aria-hidden="true">
+                        <div class="modal-dialog modal-lg">
+                            <div class="modal-content">
+                                <div class="modal-header bg-success text-white">
+                                    <h1 class="modal-title fs-5" id="modalAgregarCuentaLabel">
+                                        <i class="fa-solid fa-wallet"></i> Agregar Transacción
+                                    </h1>
+                                    <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Cerrar"></button>
+                                </div>
+
+                                <!-- Formulario para enviar nueva transacción -->
+                                <form th:action="@{/guardar}" method="post" th:object="${PocketBalance}" class="was-validated">
+                                    <div class="modal-body">
+                                        <div class="row g-3">
+                                            <div class="col-md-6">
+                                                <label>Periodo</label>
+                                                <input type="number" th:field="*{periodo}" class="form-control" required />
+                                            </div>
+                                            <div class="col-md-6">
+                                                <label>Nombre</label>
+                                                <input type="text" th:field="*{nombre}" class="form-control" required />
+                                            </div>
+                                            <div class="col-md-6">
+                                                <label>Monto</label>
+                                                <input type="number" th:field="*{monto}" class="form-control" required />
+                                            </div>
+                                            <div class="col-md-6">
+                                                <label>Cantidad</label>
+                                                <input type="number" th:field="*{cantidad}" class="form-control" required />
+                                            </div>
+                                        </div>
+                                    </div>
+
+                                    <div class="modal-footer">
+                                        <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">
+                                            <i class="fa-solid fa-xmark"></i> Cerrar
+                                        </button>
+                                        <button type="submit" class="btn btn-success">
+                                            <i class="fa-solid fa-floppy-disk"></i> Guardar
+                                        </button>
+                                    </div>
+                                </form>
+
+                            </div>
+                        </div>
+                    </div>
+
                 </div>
 
             </div>
