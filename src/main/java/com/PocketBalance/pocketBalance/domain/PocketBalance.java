@@ -34,6 +34,6 @@ public class PocketBalance implements Serializable {
     private int monto;
     private int cantidad;
 
-    @Column(name = "ultima_actualizacion", insertable = false, updatable = false)
+    @Column(name = "ultima_actualizacion")
     private Timestamp ultima_actualizacion;
 }
