@@ -16,54 +16,55 @@
         <script th:src="@{/webjars/popper.js/umd/popper.min.js}"></script>
         <script th:src="@{/webjars/bootstrap/js/bootstrap.min.js}"></script>
 
+        <script th:src="@{/js/rutinas.js}"></script>
+
     </head>
     <body>
-
-        <nav th:fragment="nav" class="navbar navbar-expand-md bg-white">
+        <nav th:fragment="nav" class="navbar navbar-expand-md">
             <div class="container">
-                <div class="row w-100 align-items-center">
 
-                    <!-- LOGO -->
-                    <div class="col-12 col-md-3 d-flex align-items-center justify-content-center justify-content-md-start mb-2 mb-md-0">
-                        <a class="navbar-brand d-flex align-items-center text-decoration-none text-dark" href="#">
-                            <img th:src="@{/img/Foto.png}" alt="Logo"
-                                 width="42" height="42"
-                                 class="rounded-circle me-2"/>
-                            <div class="d-flex flex-column fw-bold">
-                                <span>Pocket</span>
-                                <span>Balance</span>
-                            </div>
-                        </a>
+                <!-- LOGO -->
+                <a class="navbar-brand d-flex align-items-center text-decoration-none text-dark" href="#">
+                    <img th:src="@{/img/Foto.png}" alt="Logo"
+                         width="42" height="42"
+                         class="rounded-circle me-2"/>
+                    <div class="d-flex flex-column fw-bold">
+                        <span>Pocket</span>
+                        <span>Balance</span>
                     </div>
+                </a>
 
-                    <!-- MENÚ CENTRADO -->
-                    <div class="col-12 col-md-6 d-flex justify-content-center">
-                        <div class="navbar-modern d-flex align-items-center px-3 py-1 rounded-bottom" style="background-color: #3e4f3e;">
-                            <ul class="nav mb-0">
-                                <li class="nav-item">
-                                    <a class="nav-link text-white px-3" th:href="@{/dashboard}">Dashboard</a>
-                                </li>
-                                <li class="nav-item">
-                                    <a class="nav-link text-white px-3" th:href="@{/transacciones}">Transacciones</a>
-                                </li>
-                                <li class="nav-item">
-                                    <a class="nav-link text-white px-3" th:href="@{/reportes}">Reportes</a>
-                                </li>
-                                <li class="nav-item">
-                                    <a class="nav-link text-white px-3" th:href="@{/ajustes}">Ajustes</a>
-                                </li>
-                            </ul>
-                        </div>
-                    </div>
+                <!-- HAMBURGER -->
+                <button class="navbar-toggler ms-auto" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav"
+                        aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
+                    <span class="navbar-toggler-icon"></span>
+                </button>
 
-                    <!-- BOTÓN AGREGAR -->
-                    <div class="col-12 col-md-3 d-flex justify-content-center justify-content-md-end mt-2 mt-md-0">
-                        <button class="btn btn-success" data-bs-toggle="modal" data-bs-target="#modalAgregarCuenta">
-                            <i class="fa-solid fa-plus"></i> Agregar
-                        </button>
-                    </div>
-
+                <!-- NAV MENU (COLLAPSE) -->
+                <div class="collapse navbar-collapse justify-content-center" id="navbarNav">
+                    <ul class="navbar-nav mx-auto my-2 my-md-0 d-flex align-items-center shadow-sm" style="background-color: #3e4f3e; border-radius: 0 0 1rem 1rem; min-height: 64px;">
+                        <li class="nav-item">
+                            <a class="nav-link text-white px-4 py-2 fs-5" th:href="@{/dashboard}">Dashboard</a>
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link text-white px-4 py-2 fs-5" th:href="@{/transacciones}">Transacciones</a>
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link text-white px-4 py-2 fs-5" th:href="@{/reportes}">Reportes</a>
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link text-white px-4 py-2 fs-5" th:href="@{/ajustes}">Ajustes</a>
+                        </li>
+                    </ul>
                 </div>
+
+                <!-- BOTÓN AGREGAR (SIEMPRE A LA DERECHA) -->
+                <div class="d-flex align-items-center ms-md-3 mt-2 mt-md-0">
+                    <button class="btn btn-success" data-bs-toggle="modal" data-bs-target="#modalAgregarCuenta">
+                        <i class="fa-solid fa-plus"></i> Agregar
+                    </button>
+                </div>
+
             </div>
 
             <!-- MODAL Agregar Transacción -->

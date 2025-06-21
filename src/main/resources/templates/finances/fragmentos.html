@@ -18,8 +18,8 @@
                 <td th:text="${cuenta.id_transaccion}"></td>
                 <td th:text="${cuenta.periodo}"></td>
                 <td th:text="${cuenta.nombre}"></td>
-                <td th:text="'₡ '+${cuenta.monto}"></td>
-                <td th:text="${cuenta.cantidad}"></td>
+                <td class="monto" th:text="'₡ '+${cuenta.monto}"></td>
+                <td class="cantidad" th:text="${cuenta.cantidad}"></td>
                 <td th:text="${#dates.format(cuenta.ultima_actualizacion, 'dd/MM/yyyy HH:mm')}"></td>
                 <td>
                     <!-- Botón Editar -->
@@ -105,30 +105,55 @@
     <div class="card shadow-sm bg-white rounded text-center mx-auto" style="width: 21rem;">
         <div class="card-body py-2 px-3 d-flex flex-column justify-content-center">
             <h6 class="card-title mb-1 fw-bold text-start">Salario</h6>
-            <p class="card-text fw-bold text-success display-4">₡1,523,800</p>
+            <p id="totalSalario" class="card-text fw-bold text-success display-4">₡0</p>
         </div>
     </div>
 
-    <!-- Botón fuera de la tarjeta, pero alineado -->
+    <!-- Botón que abre el modal -->
     <div class="text-center mt-3" style="width: 21rem; margin-left: auto; margin-right: auto;">
-        <button type="submit" class="btn btn-success p-2 w-100">
+        <button type="button" class="btn btn-success p-2 w-100"
+                data-bs-toggle="modal" data-bs-target="#modalSalario">
             <i class="fa-solid fa-piggy-bank"></i> Guardar Cambios
         </button>
     </div>
+
+    <!-- Modal para editar salario -->
+    <div class="modal fade" id="modalSalario" tabindex="-1" aria-labelledby="modalSalarioLabel" aria-hidden="true">
+        <div class="modal-dialog">
+            <div class="modal-content">
+                <div class="modal-header bg-success text-white">
+                    <h5 class="modal-title" id="modalSalarioLabel">
+                        <i class="fa-solid fa-piggy-bank"></i> Editar Salario
+                    </h5>
+                    <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Cerrar"></button>
+                </div>
+                <div class="modal-body">
+                    <label for="inputSalario">Nuevo Salario</label>
+                    <input type="text" id="inputSalario" class="form-control" />
+
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Cancelar</button>
+                    <button type="button" class="btn btn-success" onclick="actualizarSalario()">Guardar</button>
+                </div>
+            </div>
+        </div>
+    </div>
 </div>
+
 
 
 
 <div th:fragment="cardTotales" class="card shadow-sm bg-white rounded text-center mx-auto" style="width: 21rem; height: auto;">
     <div class="card-body py-2 px-3 d-flex flex-column justify-content-center">
         <h6 class="card-title mb-1 fw-bold text-start">Gastos Totales</h6>
-        <p class="card-text fw-bold text-success display-4">₡523,800</p>
+        <p id="totalGastos" class="card-text fw-bold text-success display-4">₡0</p>
     </div>
 </div>
 
 <div th:fragment="cardSobrantes" class="card shadow-sm bg-white rounded text-center mx-auto" style="width: 21rem; height: auto;">
     <div class="card-body py-2 px-3 d-flex flex-column justify-content-center">
         <h6 class="card-title mb-1 fw-bold text-start">Sobrantes</h6>
-        <p class="card-text fw-bold text-success display-4">₡953,800</p>
+        <p id="totalSobrantes" class="card-text fw-bold text-success display-4">₡0</p>
     </div>
 </div>
